@@ -8,10 +8,11 @@ import org.springframework.web.client.RestTemplate;
 @Repository
 public class ParkingsApiDataImpl implements ParkingsApiData {
     private RestTemplate restTemplate;
-    private final String URL = "http://data.lacub.fr/wfs?key=9Y2RU3FTE8" +
-            "&SERVICE=WFS" +
-            "&VERSION=1.1.0" +
-            "&REQUEST=GetFeature&TYPENAME=ST_PARK_P&SRSNAME=EPSG:4326";
+    //    private final String URL = "http://data.lacub.fr/wfs?key=9Y2RU3FTE8" +
+    //            "&SERVICE=WFS" +
+    //            "&VERSION=1.1.0" +
+    //            "&REQUEST=GetFeature&TYPENAME=ST_PARK_P&SRSNAME=EPSG:4326";
+    private final String URL = "";
 
     public ParkingsApiDataImpl(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;

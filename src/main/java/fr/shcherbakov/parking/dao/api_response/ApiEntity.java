@@ -7,13 +7,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class ApiEntity {
 
     // here to use the key word the entities are based on, for example "Point" or "Envelope"
-    @JsonProperty (value = "NOM")
+    @JsonProperty (value = "keyword")
     private String name;
-    @JsonProperty (value = "TOTAL")
+    @JsonProperty (value = "keyword")
     private String nbTotalPlaces;
-    @JsonProperty (value = "LIBRES")
+    @JsonProperty (value = "keyword")
     private String nbFreePlaces;
-    @JsonProperty (value = "ETAT")
+    @JsonProperty (value = "keyword")
     private String status;
     // Attributes to be added according to the application config...
 

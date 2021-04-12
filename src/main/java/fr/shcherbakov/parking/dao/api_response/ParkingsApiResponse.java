@@ -10,7 +10,7 @@ import java.util.List;
 public class ParkingsApiResponse {
 
     // here to use the key word the entities are based on, for example "parking" etc...
-    @JsonProperty(value = "featureMember")
+    @JsonProperty(value = "keyword")
     private List<ApiEntity> records;
 
     public List<ApiEntity> getRecords() {
