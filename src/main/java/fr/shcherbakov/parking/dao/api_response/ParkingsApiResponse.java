@@ -2,7 +2,6 @@ package fr.shcherbakov.parking.dao.api_response;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import fr.shcherbakov.parking.models.Parking;
 
 import java.util.List;
 
@@ -10,14 +9,14 @@ import java.util.List;
 public class ParkingsApiResponse {
 
     // here to use the key word the entities are based on, for example "parking" etc...
-    @JsonProperty(value = "keyword")
-    private List<ApiEntity> records;
+    @JsonProperty(value = "records")
+    private List<DataSet> dataSets;
 
-    public List<ApiEntity> getRecords() {
-        return records;
+    public List<DataSet> getRecords() {
+        return dataSets;
     }
 
-    public void setRecords(List<ApiEntity> records) {
-        this.records = records;
+    public void setRecords(List<DataSet> dataSets) {
+        this.dataSets = dataSets;
     }
 }

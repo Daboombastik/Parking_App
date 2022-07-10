@@ -7,12 +7,8 @@ import org.springframework.web.client.RestTemplate;
 
 @Repository
 public class ParkingsApiDataImpl implements ParkingsApiData {
-    private RestTemplate restTemplate;
-    //    private final String URL = "http://data.lacub.fr/wfs?key=9Y2RU3FTE8" +
-    //            "&SERVICE=WFS" +
-    //            "&VERSION=1.1.0" +
-    //            "&REQUEST=GetFeature&TYPENAME=ST_PARK_P&SRSNAME=EPSG:4326";
-    private final String URL = "";
+    private final RestTemplate restTemplate;
+    private final String URL = "https://data.nantesmetropole.fr/api/records/1.0/search/?dataset=244400404_parkings-publics-nantes-disponibilites&q=&rows=-1&facet=grp_nom&facet=grp_statut";
 
     public ParkingsApiDataImpl(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;

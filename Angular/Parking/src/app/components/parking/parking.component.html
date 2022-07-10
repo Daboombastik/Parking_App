@@ -1,8 +1,0 @@
-<div *ngIf="parkings; else nothing">
-  <div *ngFor='let p of parkings'>
-    <div> Name: {{p.name}}</div>
-    <div> Total Places: {{p.nbTotalPlaces}}</div>
-    <div> Free places: {{p.nbFreePlaces}}</div>
-  </div>
-</div>
-<ng-template #nothing> No parkings found near you </ng-template>

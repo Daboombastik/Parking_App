@@ -3,7 +3,7 @@ package fr.shcherbakov.parking.services.implementations;
 import fr.shcherbakov.parking.dao.ParkingsApiData;
 import fr.shcherbakov.parking.dao.api_response.ParkingsApiResponse;
 import fr.shcherbakov.parking.dao.implementations.ParkingsApiDataImpl;
-import fr.shcherbakov.parking.models.Parking;
+import fr.shcherbakov.parking.models.ParkingDTO;
 import fr.shcherbakov.parking.services.ParkingService;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +13,7 @@ import java.util.List;
 @Service
 public class ParkingServiceImpl implements ParkingService {
 
-    private ParkingsApiData parkingService;
+    private final ParkingsApiData parkingService;
 
     public ParkingServiceImpl (ParkingsApiDataImpl parkingService) {
         this.parkingService = parkingService;
@@ -21,24 +21,36 @@ public class ParkingServiceImpl implements ParkingService {
 
     //Returning a list of parkings from a third party API
     @Override
-    public List<Parking> getListOfParkings() {
+    public List<ParkingDTO> getListOfParkings() {
         ParkingsApiResponse response = parkingService.getDataFromApi();
         return responseToModel(response);
     }
 
     //Mapping the list of parkings according to Parking model
-    private List<Parking> responseToModel(ParkingsApiResponse response) {
-        List<Parking> result = new ArrayList<>();
+    private List<ParkingDTO> responseToModel(ParkingsApiResponse response) {
+        List<ParkingDTO> result = new ArrayList<>();
+
         if(response.getRecords() != null) {
             for (var record : response.getRecords()) {
-                Parking parking = new Parking();
-                parking.setName(record.getName());
-                parking.setNbTotalPlaces(record.getNbTotalPlaces());
-                parking.setNbFreePlaces(record.getNbFreePlaces());
-                parking.setStatus(record.getStatus());
-                result.add(parking);
+                ParkingDTO parkingDTO = new ParkingDTO();
+                parkingDTO.setNom(record.getFields().getGrpNom());
+                parkingDTO.setStatut(defineStatus(record.getFields().getGrpStatut()));
+                parkingDTO.setNbPlacesDispo(record.getFields().getGrpDisponible());
+                parkingDTO.setNbPlacesTotal(record.getFields().getGrpExploitation());
+                parkingDTO.setHeureMaj(record.getFields().getGrpHorodatage());
+                result.add(parkingDTO);
             }
         }
         return result;
+    }
+
+    private String defineStatus(String code){
+
+        return switch (code) {
+            case "1" -> "FERME";
+            case "2" -> "ABONNES";
+            case "5" -> "OUVERT";
+            default -> "Données non disponibles";
+        };
     }
 }
